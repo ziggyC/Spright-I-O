@@ -1,4 +1,4 @@
-﻿// Blog Tab Angular Configuration
+// Route Configuration
 (function () {
     "use strict";
 
