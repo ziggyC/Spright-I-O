@@ -81,14 +81,3 @@ sabio.services.addresses.deleteAddressById = function (addressid, onSuccess, onE
     });
 }
 
-// Populate current dealer
-sabio.services.addresses.populateByCurrentDealer = function (onSuccess, onError) {
-    $.ajax({
-        type: 'GET',
-        url: "/api/address/currentDealer",
-        dataType: "json",
-        success: onSuccess,
-        error: onError
-
-    });
-};
