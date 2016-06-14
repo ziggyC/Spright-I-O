@@ -92,14 +92,3 @@ sabio.services.addresses.populateByCurrentDealer = function (onSuccess, onError)
 
     });
 };
-//sabio.services.addresses.populateByCurrentUser = function (userId,onSuccess, onError) {
-//    $.ajax({
-//        type: 'GET',
-//        url: "/api/address/currentUser"+userId,
-//        dataType: "json",
-//        success: onSuccess,
-//        error: onError
-
-//    });
-//};
-
