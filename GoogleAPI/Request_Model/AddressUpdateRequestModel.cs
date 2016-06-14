@@ -4,7 +4,7 @@ using System.ComponentModel.DataAnnotations;
 using System.Linq;
 using System.Web;
 
-namespace Spright.Web.Models.Requests.Addresses
+namespace Sabio.Web.Models.Requests.Addresses
 {
     public class AddressUpdateRequestModel : AddressAddRequestModel
     {
