@@ -1,0 +1,426 @@
+﻿@model Sabio.Web.Models.ViewModels.ItemViewModel<int?>
+
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/_LayoutUmega.cshtml";
+}
+
+
+
+
+<div class="container col-lg-12">
+    <div class="row col-xs-6">
+        <h1> Hello World! </h1>
+        <div class="">
+
+            <form class="form-horizontal" id="addressForm" role="form">
+
+                <!-- Address Line 1 Text input-->
+                <div class="form-group">
+                    <label class="col-sm-2 control-label" for="textinput"> Address Line  </label>
+                    <div class="col-sm-6">
+                        <input id="line" name="Line" type="text" placeholder="Address Line" class="form-control">
+                    </div>
+                </div>
+
+                <!-- Address Line 2 Text input-->
+                <div class="form-group">
+                    <label class="col-sm-2 control-label" for="textinput"> Address Line 2 </label>
+                    <div class="col-sm-6">
+                        <input id="lineTwo" name="LineTwo" type="text" placeholder="Apt/Unit/Suite # " class="form-control">
+                    </div>
+                </div>
+
+                <!-- City Text input-->
+                <div class="form-group">
+                    <label class="col-sm-2 control-label" for="textinput">City</label>
+                    <div class="col-sm-6">
+                        <input id="city" name="City" type="text" placeholder="City" class="form-control">
+                    </div>
+                </div>
+
+
+                <!-- State Selection Dropdown List-->
+                <div class="form-group">
+                    <label class="col-sm-2 control-label" for="textinput">State</label>
+                    <div class="col-sm-2">
+                        <select class="form-control" id="stateId" name="StateId">
+                            <option value=""> - </option>
+                            <option value="AK">Alaska</option>
+                            <option value="AL">Alabama</option>
+                            <option value="AR">Arkansas</option>
+                            <option value="AZ">Arizona</option>
+                            <option value="CA">California</option>
+                            <option value="CO">Colorado</option>
+                            <option value="CT">Connecticut</option>
+                            <option value="DC">District of Columbia</option>
+                            <option value="DE">Delaware</option>
+                            <option value="FL">Florida</option>
+                            <option value="GA">Georgia</option>
+                            <option value="HI">Hawaii</option>
+                            <option value="IA">Iowa</option>
+                            <option value="ID">Idaho</option>
+                            <option value="IL">Illinois</option>
+                            <option value="IN">Indiana</option>
+                            <option value="KS">Kansas</option>
+                            <option value="KY">Kentucky</option>
+                            <option value="LA">Louisiana</option>
+                            <option value="MA">Massachusetts</option>
+                            <option value="MD">Maryland</option>
+                            <option value="ME">Maine</option>
+                            <option value="MI">Michigan</option>
+                            <option value="MN">Minnesota</option>
+                            <option value="MO">Missouri</option>
+                            <option value="MS">Mississippi</option>
+                            <option value="MT">Montana</option>
+                            <option value="NC">North Carolina</option>
+                            <option value="ND">North Dakota</option>
+                            <option value="NE">Nebraska</option>
+                            <option value="NH">New Hampshire</option>
+                            <option value="NJ">New Jersey</option>
+                            <option value="NM">New Mexico</option>
+                            <option value="NV">Nevada</option>
+                            <option value="NY">New York</option>
+                            <option value="OH">Ohio</option>
+                            <option value="OK">Oklahoma</option>
+                            <option value="OR">Oregon</option>
+                            <option value="PA">Pennsylvania</option>
+                            <option value="PR">Puerto Rico</option>
+                            <option value="RI">Rhode Island</option>
+                            <option value="SC">South Carolina</option>
+                            <option value="SD">South Dakota</option>
+                            <option value="TN">Tennessee</option>
+                            <option value="TX">Texas</option>
+                            <option value="UT">Utah</option>
+                            <option value="VA">Virginia</option>
+                            <option value="VT">Vermont</option>
+                            <option value="WA">Washington</option>
+                            <option value="WI">Wisconsin</option>
+                            <option value="WV">West Virginia</option>
+                            <option value="WY">Wyoming</option>
+                        </select>
+                    </div>
+
+                    <!-- Zipcode Text input-->
+                    <label class="col-sm-1 control-label" for="textinput">Zipcode</label>
+                    <div class="col-sm-3">
+                        <input id="zipCode" name="ZipCode" type="text" placeholder="Zipcode" class="form-control">
+                    </div>
+                </div>
+
+                <!-- Latitude Longtitude Text input - Hidden -->
+
+
+                <input id="latitude" name="Latitude" type="hidden" placeholder="Latituude" class="form-control">
+                <input id="longitude" name="Longitude" type="hidden" placeholder="Longitude" class="form-control">
+
+
+                <!-- Form Submission Buttons -->
+                <div class="form-group">
+                    <div class="col-sm-offset-2 col-md-8">
+
+                        <a href="/address/manage" class="btn btn-default active btn-md" role="button" style="margin-right:10px; text-align:center;">Cancel</a>
+                        <button id="checkAddress" type="button" class="btn btn-primary  btn-md" style="margin-right:10px;  text-align:center;">Check Address</button>
+                        <button id="saveAddress" type="button" class="btn btn-primary  btn-md" style="margin-right:10px;  text-align:center;" disabled>Save Address</button>
+                        <!-- Not sure which btn to keep<a href="/address/index" class="btn btn-default active" role="button">Manage</a>-->
+
+
+                    </div>
+                </div>
+
+
+            </form>
+
+        </div><!-- /.col-xs-6 -->
+    </div><!-- /.row Form -->
+    <!-- Google Maps Column - Map Placeholder  -->
+    <div class="row col-xs-6 ">
+        <div class="">
+
+            <div id="googleMap" style="width:700px;height:580px;"></div>
+
+        </div> <!-- col-xs-6 -->
+    </div> <!--Row Google Maps -->
+</div> <!--Contianer-->
+
+<input type="hidden" id="addressId" value="@Model.Item" />
+
+
+<!--###     Scripts    ###-->
+
+@section scripts
+
+{
+    <!-- Google Mamps Api-->
+    <script src="http://maps.googleapis.com/maps/api/js?key=AIzaSyAP3Eobb3_rAayLZVYY1FQFTxvm6l_uB8c"> </script>
+
+    <!-- Jquery and services(ajax refactoring)-->
+    <script src="~/Scripts/services/sabio.services.addresses.js"></script>
+    <script src="~/Scripts/jquery.validate.min.js"></script>
+
+
+
+    <script type="text/javascript">
+
+        sabio.page.addressId = null;
+
+
+        //Run on startup
+        sabio.page.startUp = function () {
+
+            //Map on load, starting drop/pin position
+            sabio.page.map = new google.maps.Map($('#googleMap')[0], {
+                zoom: 10,
+                center: { lat: 34.0522, lng: -118.2437 }
+            });
+
+            sabio.page.marker = new google.maps.Marker({
+                position: { lat: 34.0522, lng: -118.2437 },
+                map: sabio.page.map
+            });
+
+
+
+            sabio.page.geocoder = new google.maps.Geocoder();
+
+            sabio.page.addressId = $("#addressId").val();
+
+            if (sabio.page.addressId && sabio.page.addressId.length > 0) {
+                console.log("EDIT mode - go get the data");
+
+                //Address form populate by Id
+                sabio.services.addresses.populateById(sabio.page.addressId, sabio.page.handlers.addressPopulateByIdSuccess, sabio.page.handlers.addressPopulateByIdError);
+
+            }
+            else {
+
+                console.log("CREATE mode - jobGuid is empty");
+            }
+
+            sabio.page.initializeValidation();
+
+            //Button to run the Ajax for the Address creation
+            $('#checkAddress').on('click', sabio.page.handlers.validateAddress);
+            $('#saveAddress').on('click', sabio.page.handlers.createOrUpdateAddress)
+
+        }
+
+
+        // Populate form from Id faliure message
+        sabio.page.handlers.addressPopulateByIdError = function (Event) {
+            console.log("Load failed!")
+        };
+
+        // Ajax Success from Get Address by Id + updating of the Google Map with the new Latitude and Longitude from the current Address
+        sabio.page.handlers.addressPopulateByIdSuccess = function (addressResponse) {
+            console.log(addressResponse.item);
+            $('#line').val(addressResponse.item.line);
+            $('#lineTwo').val(addressResponse.item.lineTwo);
+            $('#city').val(addressResponse.item.city);
+            $('#stateId').val(addressResponse.item.stateId);
+            $('#zipCode').val(addressResponse.item.zipCode);
+            $('#latitude').val(addressResponse.item.latitude);
+            $('#longitude').val(addressResponse.item.longitude);
+
+
+
+            var lat = addressResponse.item.latitude;
+            var lng = addressResponse.item.longitude;
+            var newLatLng = new google.maps.LatLng(lat, lng);
+            sabio.page.marker.setPosition(newLatLng);
+            sabio.page.map.setCenter(newLatLng);
+
+
+
+            console.log('address update map test:', newLatLng);
+
+        }
+
+        //Reset form on create and relocate window back to index
+        sabio.page.handlers.onAddressCreateSuccess = function (response) {
+            $("#addressForm").trigger('reset');
+            sabio.page.addressId = response.item;
+            window.location.href = "/address/manage";
+        };
+
+        // Form validation initialization
+        sabio.page.initializeValidation = function () {
+            //set defaults for the entire plugin
+            jQuery.validator.setDefaults({
+                debug: true
+            });
+
+            //  set rules and error messages
+            $('#addressForm').validate({
+
+                rules: {
+                    "Line": {
+                        required: true  //  Addres is required
+                    },
+                    "LineTwo": {
+                        required: false // Unit/apt/suite # is required
+                    },
+                    "city": {
+                        required: true  //  city is required
+                    },
+                    "stateId": {
+                        required: true  //  State is required
+                    },
+
+                    "zipCode": {
+                        required: true  //  Zipcode is required
+                    }
+
+
+                },
+                //  here you can provide custom error messages if you want to - this part is optional
+                messages: {
+                    "Line": {
+                        required: "UAddress is required.",
+                    },
+                    "LineTwo": {
+                        required: "Unit/apt/suite # is required.",
+                    },
+                    "city": {
+                        required: "A city name is required.",
+                    },
+                    "stateId": {
+                        required: "Please select your state.",
+                    },
+                    "zipCode": {
+                        required: "A zipcode is required.",
+
+                    }
+
+                }
+            });
+        };
+
+
+
+        // Google Maps Geocoding/Function
+        sabio.page.geocode = function (newAddress) {
+
+            sabio.page.geocoder.geocode({ 'address': newAddress },
+
+                //Map Success function
+                function (results, status) {
+                    if (status === google.maps.GeocoderStatus.OK) {
+                        sabio.page.map.setCenter(results[0].geometry.location);
+
+
+
+                        //Inserting lat/long into the field then adding to the rest of the address form
+                        var lat = results[0].geometry.location.lat();
+                        var lon = results[0].geometry.location.lng();
+
+
+                        //pass the new lat and long info to the input
+                        $('#latitude').val(lat);
+                        $('#longitude').val(lon);
+
+                        // pass the info from the lat and long to the new variables below and new marker position on map
+                        var lat = $('#latitude').val();
+                        var lng = $('#longitude').val();
+                        var newLatLng = new google.maps.LatLng(lat, lng);
+                        sabio.page.marker.setPosition(newLatLng);
+                        sabio.page.map.setCenter(newLatLng);
+
+
+
+                        //Save Address button is Enabled
+                        $('#saveAddress').removeAttr('disabled');
+                    }
+
+                    else {
+
+                        alert('Geocode was not successful for the following reason: ' + status);
+
+                        //Save Address stay dispabled until a valid address has been typed in the form
+                        $('#saveAddress').prop('disabled', true);
+                    }
+                });
+        }
+
+
+
+        //Concatinating the Address Form to be used with Google Maps Geocoder
+        sabio.page.handlers.validateAddress = function () {
+            console.log("This works");
+            //  this line checks the data from the form against the rules defined on startUp.
+            //  Updating of existing Address
+            if ($('#addressForm').valid()) {
+
+                var myAddress = $('#line').val();
+
+                if ($('#lineTwo').val()) {
+
+                    myAddress += ' ' + $('#lineTwo').val();
+                }
+
+                if ($('#city').val()) {
+
+                    myAddress += ' ' + $('#city').val();
+                }
+
+                if ($('#stateId').val()) {
+
+                    myAddress += ' ' + $('#stateId').val();
+                }
+
+                if ($('#zipCode').val()) {
+                    myAddress += ' ' + $('#zipCode').val();
+                }
+
+                sabio.page.geocode(myAddress);
+            }
+            console.log("my address:", myAddress);
+
+        }
+
+        //Create and update of address
+        sabio.page.handlers.createOrUpdateAddress = function (event) {
+
+            if (sabio.page.addressId) {
+
+                var addressPayload = $('#addressForm').serialize();
+
+                // Ajax call for Address Update service ajax refactoring
+                sabio.services.addresses.updateAddress(addressPayload, sabio.page.addressId, sabio.page.handlers.onAddressUpdateSuccess, sabio.page.handlers.onAddressUpdateError);
+
+            }
+
+                //Ajax call for Creating of a new Address
+            else {
+
+                var addressPayload = $('#addressForm').serialize();
+
+                //  Ajax address creation service ajax refactoring
+                sabio.services.addresses.createAddress(addressPayload, sabio.page.handlers.onAddressCreateSuccess, sabio.page.handlers.onCreateAddressError);
+
+            }
+            console.log('payload:', addressPayload);
+
+        }
+
+        //  Ajax Address update success
+        sabio.page.handlers.onAddressUpdateSuccess = function (event) {
+            window.location.href = "/address/index";
+        };
+
+        // Ajax Address update error messsage
+        sabio.page.handlers.onAddressUpdateError = function (event) {
+            console.log("Address udpate fail!");
+
+        };
+
+        //  Ajax Address create error
+        sabio.page.handlers.onCreateAddressError = function (event) {
+            console.log("Address creation fail");
+
+        };
+
+
+    </script>
+
+}

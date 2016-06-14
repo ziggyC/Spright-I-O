@@ -1,0 +1,28 @@
+﻿@model Sabio.Web.Models.ViewModels.ItemViewModel<int?>
+
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/_LayoutUmega.cshtml";
+}
+<div ng-view> </div>
+
+
+
+
+@section scripts
+
+{
+    <!-- Google Mamps Api-->
+    <script src="http://maps.googleapis.com/maps/api/js?key=AIzaSyAP3Eobb3_rAayLZVYY1FQFTxvm6l_uB8c"> </script>
+
+    <!-- services(Ajax Call), RouteConfig, Index Controller -->
+    <script src="~/Scripts/services/sabio.services.addresses.js"></script>
+
+    <script src="~/Scripts/sabio/application/services/addressServices.js"></script>
+
+    <script src="~/Scripts/sabio/application/addresses/AddressConfig.js"></script>
+
+    <script src="~/Scripts/sabio/application/addresses/controllers/Index_controller.js"></script>
+
+
+}
