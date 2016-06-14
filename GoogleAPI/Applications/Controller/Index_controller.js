@@ -71,13 +71,12 @@
 
 
 
-        //-- this line to simulate inheritance
+    
         $baseController.merge(vm, $baseController);
 
-        // This is a wrapper for our small dependency on $scope
         vm.notify = vm.$AddressesService.getNotifier($scope);
 
-        // This is like the sabio.startUp function
+        //init
         render();
 
         // If Id is present, populate the form with that address
@@ -94,9 +93,7 @@
             });
 
             
-
             vm.geocoder = new google.maps.Geocoder();
-
 
             // if the Id is present and its greater than 0, run the Ajax to populate the form
             if (vm.addressId && vm.addressId.length > 0) {
@@ -130,7 +127,7 @@
         }
 
         //Assigning the addressString varibale to the Geo Coder function and starting the process to validate the address
-        function _codeAddress(address) { //? why not hoist on top??
+        function _codeAddress(address) { 
             console.log("address string -> ", address);
 
             vm.geocoder.geocode({ 'address': address }, _onCodeAddress);
@@ -197,20 +194,16 @@
             vm.marker.setPosition(newLatLng);
             vm.map.setCenter(newLatLng);
          
-
-
             // Console log the data being passed into the HTML form for population byt Id
             console.log('Populate by Id worked', data);
 
         }
                 
-
         // Failed update by Id Ajax
         function _addressPopulateByIdError() {
             console.log('Populate by Id failed');
         }
                 
-
         // Call Update Address bu Id or Create Address function if the form has been populated by the address from the Manage page by the Edit button
         function _submitAddressForm(data) {
 
@@ -262,7 +255,7 @@
                 vm.items = data.items;
             });
         }
-        //Not being used I think
+       
         function _resetAddressForm() {
             console.log("reset form");
             vm.addressFormVisible = false;
