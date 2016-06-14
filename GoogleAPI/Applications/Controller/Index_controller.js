@@ -66,7 +66,7 @@
         vm.addAddress = _addAddress;
         vm.echoAddress = _echoAddress;
         vm.resetAddressForm = _resetAddressForm;
-        vm.submitAddressForm = _submitAddressForm; // used and binded to the save address button in HTML above
+        vm.submitAddressForm = _submitAddressForm; // used and binded to the save address button in HTML
         vm.checkAddressGeo = _checkAddressGeo;
 
 
