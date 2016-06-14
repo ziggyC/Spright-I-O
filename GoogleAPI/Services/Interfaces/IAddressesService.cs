@@ -16,7 +16,6 @@ namespace Sabio.Web.Services.Interfaces
         List<Domain.Address> ListAddresses();
         void DeleteAddressById(int id);
         Domain.Address GetAddressByUserID(Guid UserId);
-        List<Domain.Address> GetAddressByCurrentDealer(Guid UserId);
 
     }
 }
