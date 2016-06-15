@@ -1,21 +1,3 @@
-﻿// Service Factory Setup
-(function () {
-    "use strict";
-
-    angular.module(APPNAME)
-        .factory('$AddressesService', addressServiceFactory);
-
-    addressServiceFactory.$inject = ['$baseService', '$sabio'];
-
-    function addressServiceFactory($baseService, $sabio) {
-
-        var aSabioServiceObject = sabio.services.addresses;
-        var newService = $baseService.merge(true, {}, aSabioServiceObject, $baseService);
-
-        console.log('addresses list:', aSabioServiceObject)
-        return newService;
-    }
-})();
 
 // Controller Setup
 (function () {
