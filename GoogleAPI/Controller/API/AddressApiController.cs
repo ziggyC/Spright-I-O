@@ -100,40 +100,6 @@ namespace Sabio.Web.Controllers.Api
             return Request.CreateResponse(response);
         }
 
-
-        // List Address by current user
-        [Route("currentUser"), HttpGet]
-        [Authorize]
-        public HttpResponseMessage GetAddressCurrentUser()
-        {
-
-            string userId = UserService.GetCurrentUserId();
-            Guid myId = new Guid(userId);
-
-            ItemResponse<Address> response = new ItemResponse<Address>();
-
-            response.Item = _addressesService.GetAddressByUserID(myId);
-
-            return Request.CreateResponse(response);
-        }
-
-        // List Address by current user
-        [Route("currentDealer"), HttpGet]
-        public HttpResponseMessage GetAddressCurrentDealer()
-        {
-
-            string userId = UserService.GetCurrentUserId();
-            //string userId = "05e3a6c2-5610-40d0-adcf-5300517febd2";
-            Guid userID = new Guid(userId);
-
-            ItemsResponse<Address> response = new ItemsResponse<Address>();
-
-            response.Items = _addressesService.GetAddressByCurrentDealer(userID);
-
-            return Request.CreateResponse(response);
-        }
-
-
     }
 }
 
