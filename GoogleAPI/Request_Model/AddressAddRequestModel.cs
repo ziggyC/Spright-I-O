@@ -12,10 +12,8 @@ namespace Sabio.Web.Models.Requests
 
     {
 
-
         [Required]
         public string Line { get; set; }
-
 
         public string LineTwo { get; set; }
 
@@ -28,12 +26,9 @@ namespace Sabio.Web.Models.Requests
         [Required]
         public int ZipCode { get; set; }
 
-
         public string UserID { get; set; }
 
-
         public decimal? Latitude { get; set; }
-
 
         public decimal? Longitude { get; set; }
 
