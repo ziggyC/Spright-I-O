@@ -165,10 +165,10 @@
         sabio.page.addressId = null;
 
 
-        //Run on startup
+        // Run on startup
         sabio.page.startUp = function () {
 
-            //Map on load, starting drop/pin position
+            // Map on load, starting drop/pin position
             sabio.page.map = new google.maps.Map($('#googleMap')[0], {
                 zoom: 10,
                 center: { lat: 34.0522, lng: -118.2437 }
@@ -188,7 +188,7 @@
             if (sabio.page.addressId && sabio.page.addressId.length > 0) {
                 console.log("EDIT mode - go get the data");
 
-                //Address form populate by Id
+                // Address form populate by Id
                 sabio.services.addresses.populateById(sabio.page.addressId, sabio.page.handlers.addressPopulateByIdSuccess, sabio.page.handlers.addressPopulateByIdError);
 
             }
@@ -199,7 +199,7 @@
 
             sabio.page.initializeValidation();
 
-            //Button to run the Ajax for the Address creation
+            // Button to run the Ajax for the Address creation
             $('#checkAddress').on('click', sabio.page.handlers.validateAddress);
             $('#saveAddress').on('click', sabio.page.handlers.createOrUpdateAddress)
 
@@ -276,7 +276,7 @@
                 //  here you can provide custom error messages if you want to - this part is optional
                 messages: {
                     "Line": {
-                        required: "UAddress is required.",
+                        required: "Address is required.",
                     },
                     "LineTwo": {
                         required: "Unit/apt/suite # is required.",
@@ -303,14 +303,14 @@
 
             sabio.page.geocoder.geocode({ 'address': newAddress },
 
-                //Map Success function
+                // Map Success function
                 function (results, status) {
                     if (status === google.maps.GeocoderStatus.OK) {
                         sabio.page.map.setCenter(results[0].geometry.location);
 
 
 
-                        //Inserting lat/long into the field then adding to the rest of the address form
+                        // Inserting lat/long into the field then adding to the rest of the address form
                         var lat = results[0].geometry.location.lat();
                         var lon = results[0].geometry.location.lng();
 
@@ -328,7 +328,7 @@
 
 
 
-                        //Save Address button is Enabled
+                        // Save Address button is Enabled
                         $('#saveAddress').removeAttr('disabled');
                     }
 
@@ -336,7 +336,7 @@
 
                         alert('Geocode was not successful for the following reason: ' + status);
 
-                        //Save Address stay dispabled until a valid address has been typed in the form
+                        // Save Address stay dispabled until a valid address has been typed in the form
                         $('#saveAddress').prop('disabled', true);
                     }
                 });
@@ -344,7 +344,7 @@
 
 
 
-        //Concatinating the Address Form to be used with Google Maps Geocoder
+        //Concatenating the Address Form to be used with Google Maps Geocoder
         sabio.page.handlers.validateAddress = function () {
             console.log("This works");
             //  this line checks the data from the form against the rules defined on startUp.
@@ -385,17 +385,17 @@
 
                 var addressPayload = $('#addressForm').serialize();
 
-                // Ajax call for Address Update service ajax refactoring
+                // Ajax call for Address Update
                 sabio.services.addresses.updateAddress(addressPayload, sabio.page.addressId, sabio.page.handlers.onAddressUpdateSuccess, sabio.page.handlers.onAddressUpdateError);
 
             }
 
-                //Ajax call for Creating of a new Address
+                // else Ajax call for Creating of a new Address
             else {
 
                 var addressPayload = $('#addressForm').serialize();
 
-                //  Ajax address creation service ajax refactoring
+                //  Ajax call for Address creation 
                 sabio.services.addresses.createAddress(addressPayload, sabio.page.handlers.onAddressCreateSuccess, sabio.page.handlers.onCreateAddressError);
 
             }
