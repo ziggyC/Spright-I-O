@@ -1,6 +1,18 @@
 ﻿if (!sabio.services.addresses)
     sabio.services.addresses = {}
 
+// List all addresses Ajax call
+sabio.services.addresses.listAllAddresses = function (onSuccess, onError) {
+$.ajax({
+
+    type: 'GET',
+    url: '/api/address',
+    dataType: 'json',
+    success: onSuccess,
+    error: onError
+
+    });
+}
 
 // Update address by id
 sabio.services.addresses.updateAddress = function (payload, addressId, onSucces, onError) {
@@ -31,7 +43,7 @@ sabio.services.addresses.createAddress = function (payload, onSucces, onError) {
 };
 
 
-// Populate form by id Ajax call
+// Populate Address form by id Ajax call
 sabio.services.addresses.populateById = function (addressId, onSuccess, onError) {
     $.ajax({
         type: 'GET',
@@ -42,33 +54,6 @@ sabio.services.addresses.populateById = function (addressId, onSuccess, onError)
 
     });
 };
-
-// Populate current user address
-sabio.services.addresses.populateByCurrentUser = function (onSuccess, onError) {
-    $.ajax({
-        type: 'GET',
-        url: "/api/address/currentUser",
-        dataType: "json",
-        success: onSuccess,
-        error: onError
-
-    });
-};
-
-
-// List all addresses Ajax call
-sabio.services.addresses.listAllAddresses = function (onSuccess, onError) {
-$.ajax({
-
-    type: 'GET',
-    url: '/api/address',
-    dataType: 'json',
-    success: onSuccess,
-    error: onError
-
-    });
-}
-
 
 // Delete by Id Ajax call
 sabio.services.addresses.deleteAddressById = function (addressid, onSuccess, onError) {
