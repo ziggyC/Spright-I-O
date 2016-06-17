@@ -1,26 +1,31 @@
+
 @{
-    ViewBag.Title = "Index";
+    ViewBag.Title = "Index_ng";
     Layout = "~/Views/Shared/_LayoutUmega.cshtml";
 }
 
+<div ng-view> </div>
 
-  <div ng-view> </div>
+<!--###     Scripts    ###-->
 
 @section scripts
-
 {
-    
-    
-    <script src="~/Scripts/sabio/application/addresses/controllers/Index_controller.js"></script>
 
-    <!-- Google Mamps Api-->
+    @*Google Mamps Api*@
+
     <script src="http://maps.googleapis.com/maps/api/js?key=AIzaSyAP3Eobb3_rAayLZVYY1FQFTxvm6l_uB8c"> </script>
 
-    <!-- services(Ajax Call), RouteConfig, Index Controller -->
-    <script src="~/Scripts/services/sabio.services.addresses.js"></script>
+    @*Controllers and Config*@
 
+    <script src="~/Scripts/sabio/application/addresses/controllers/CreateEditController.js"></script>
+    <script src="~/Scripts/sabio/application/addresses/controllers/Indexcontroller.js"></script>
+    <script src="~/Scripts/sabio/application/addresses/AddressConfig.js"></script>
+
+    @*Services*@
+
+    <script src="~/Scripts/services/sabio.services.addresses.js"></script>
     <script src="~/Scripts/sabio/application/services/addressServices.js"></script>
 
-    <script src="~/Scripts/sabio/application/addresses/AddressConfig.js"></script>
+
 
 }
