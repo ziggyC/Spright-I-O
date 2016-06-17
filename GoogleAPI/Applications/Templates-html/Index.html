@@ -1,0 +1,49 @@
+﻿
+<div class="widget" id="addressController">
+
+    <div class="widget-heading">
+        <h3 class="widget-title">Address Table</h3>
+    </div>
+
+    <div>
+        <a href="/address/index#/create" class="btn btn-default active" role="button">Create</a>
+    </div>
+
+    <div class="widget-body">
+
+        <table class="addressTable stable table-bordered">
+            <thead>
+                <tr>
+                    <th class='col-sm-1'>Id</th>
+                    <th class='col-sm-3'>Address</th>
+                    <th class='col-sm-1'>Apt, suite, etc (optional)</th>
+                    <th class='col-sm-1'>City</th>
+                    <th class='col-sm-2'>State</th>
+                    <th class='col-sm-1'>Zipcode</th>
+                    <th class='col-sm-1'>Date Added</th>
+                    <th class='col-sm-1'>Last Modified</th>
+
+                </tr>
+            </thead>
+            <tbody>
+
+                <tr data-ng-repeat="address in addList.items track by address.id">
+
+                    <td class="tableColId"> {{address.id}} </td>
+                    <td class="tableColLine"> {{address.line}}  </td>
+                    <td class="tableColLineTwo"> {{address.lineTwo}}  </td>
+                    <td class="tableColCity">  {{address.city}} </td>
+                    <td class="tableColStateId"> {{address.stateId}}   </td>
+                    <td class="tableColZipCode"> {{address.zipCode}}   </td>
+                    <td class="tableColDateAdded"> {{address.dateAdded}}  </td>
+                    <td class="tableColDateModified"> {{address.dateModified}}  </td>
+                    <td><a ng-href="/address/index#/edit/{{address.id}}" class="editAddressById btn btn-default"> Edit </a></td>
+                    <td><a ng-click="addList.deleteAddressById(address.id)" class="deleteAddressById btn btn-default"> Delete </a></td>
+
+                </tr>
+            </tbody>
+
+        </table>
+      
+    </div>
+</div>
